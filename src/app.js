@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import List from "./components/list";
 import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
+import Popup from "./components/popup";
 
 /**
  * Приложение
@@ -11,7 +12,10 @@ import PageLayout from "./components/page-layout";
  */
 function App({ items, cart }) {
 
-  const list = items.getState().list;
+  const [onPopup, setOnPopup] = useState(true);
+
+  const itemsList = items.getState().list;
+  const cartList = cart.getState().list;
 
   const callbacks = {
     onAddItem: (item) => {
@@ -24,12 +28,25 @@ function App({ items, cart }) {
     }
   }
 
+  function openPopup() {
+    setOnPopup(true);
+  }
+
+  function closePopup() {
+    setOnPopup(false);
+  }
+
   return (
     <PageLayout>
       <Head title='Магазин' />
-      <Controls />
-      <List list={list}
+      <Controls openPopup={openPopup} />
+      <List list={itemsList}
         onAddItem={callbacks.onAddItem} />
+      <Popup
+        list={itemsList}
+        isOpen={onPopup}
+        onClose={closePopup}
+      />
     </PageLayout>
   );
 }

@@ -83,6 +83,7 @@ class Store {
             count: item.count + 1,
           };
         }
+        return item;
       })
     })
   }

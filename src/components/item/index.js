@@ -5,9 +5,6 @@ import './style.css';
 
 function Item(props) {
 
-  // Счётчик выделений
-  const [count] = useState(0);
-
   const callbacks = {
     onAddItem: (e) => {
       e.stopPropagation();
@@ -23,7 +20,7 @@ function Item(props) {
         {props.item.title}
       </div>
       <div className='Item-price'>
-        {props.item.price}$
+        {props.item.price}₽
       </div>
       <div className='Item-actions'>
         <button onClick={callbacks.onAddItem}>
@@ -39,7 +36,6 @@ Item.propTypes = {
     code: PropTypes.number,
     title: PropTypes.string,
     selected: PropTypes.bool,
-    count: PropTypes.number
   }).isRequired,
   onDelete: PropTypes.func,
   onSelect: PropTypes.func

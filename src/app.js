@@ -12,20 +12,24 @@ import Popup from "./components/popup";
  */
 function App({ items, cart }) {
 
-  const [onPopup, setOnPopup] = useState(true);
+  const [onPopup, setOnPopup] = useState(false);
 
   const itemsList = items.getState().list;
   const cartList = cart.getState().list;
 
   const callbacks = {
-    onAddItem: (item) => {
+    onDeleteItem: useCallback((code) => {
+      cart.deleteItem(code);
+    }, [cart]),
+
+    onAddItem: useCallback((item) => {
       if (cart.findItem(item.title) !== -1) {
         cart.onCounter(item.title)
       } else {
         cart.addItem(item);
       }
       console.log(cart.state.list);
-    }
+    }, [cart])
   }
 
   function openPopup() {
@@ -39,11 +43,14 @@ function App({ items, cart }) {
   return (
     <PageLayout>
       <Head title='Магазин' />
-      <Controls openPopup={openPopup} />
+      <Controls
+        list={cartList}
+        openPopup={openPopup}
+      />
       <List list={itemsList}
         onAddItem={callbacks.onAddItem} />
       <Popup
-        list={itemsList}
+        list={cartList}
         isOpen={onPopup}
         onClose={closePopup}
       />

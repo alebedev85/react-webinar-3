@@ -46,6 +46,7 @@ function App({ items, cart }) {
       <Controls
         list={cartList}
         openPopup={openPopup}
+        disabled={cartList.length === 0}
       />
       <List list={itemsList}
         onAddItem={callbacks.onAddItem} />

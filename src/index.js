@@ -22,7 +22,7 @@ const cart = new Store({
 
 const root = createRoot(document.getElementById('root'));
 
-items.subscribe(() => {
+cart.subscribe(() => {
   root.render(<App items={items} cart={cart}/>);
 });
 

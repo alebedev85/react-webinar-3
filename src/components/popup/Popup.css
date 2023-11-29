@@ -21,8 +21,9 @@
 }
 
 .popup-container {
+  overflow: hidden;
   width: 960px;
-  min-height: 407px;
+  padding-bottom: 89px;
   border-radius: 10px;
   margin: 0 auto;
   background: #fff;
@@ -30,16 +31,19 @@
   box-shadow: 0 0 15px 5px #0000003b;
 }
 
-.popup__form {
-  padding-top: 48px;
+.popup-resalt {
+  padding-top: 20px;
+  padding-right: 120px;
+  justify-content: flex-end;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  gap: 53px;
 }
 
-
-.popup__title {
-  margin: 0;
-  padding: 0;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
+.popup-body{
+  display: block;
+  padding-top: 51px;
 }

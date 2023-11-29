@@ -1,10 +1,9 @@
 import './Popup.css'
 import List from "../list";
-import Controls from "../controls";
 import Head from "../head";
 import React from 'react';
 
-export default function InfoTooltip({ list, isOpen, onClose }) {
+export default function Popup({ list, isOpen, onClose }) {
 
   const callbacks = {
     onAddItem: (item) => {
@@ -17,17 +16,22 @@ export default function InfoTooltip({ list, isOpen, onClose }) {
     }
   }
 
-
   return (
     <div className={`popup ${isOpen ? ('popup_opened') : ''}`} >
       <div className='popup-container'>
         <Head title='Карзина' >
-        <button onClick={onClose}>
-          Закрыть
-        </button>
+          <button onClick={onClose}>
+            Закрыть
+          </button>
         </Head>
-        <List list={list}
-          onAddItem={callbacks.onAddItem} />
+        <div className='popup-body'>
+          <List list={list}
+            onAddItem={callbacks.onAddItem} />
+          <div className='popup-resalt'>
+            <span>Итого: </span>
+            <span>{list.reduce((sum, item) => { return sum + item.count * item.price }, 0)} ₽</span>
+          </div>
+        </div>
       </div>
     </div>
   )

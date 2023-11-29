@@ -9,7 +9,7 @@ function Controls({ openPopup, list, disabled }) {
         {list.length > 0 ?
           <span className='Controls-span'>{list.length} товара / {list.reduce((sum, item) => {
             return sum + item.count * item.price}, 0)} ₽</span> :
-            <span className='Controls-span'> пусто</span>}
+            <span className='Controls-span'>пусто</span>}
       </h2>
       <button disabled={disabled} onClick={() => openPopup()}>Перейти</button>
     </div>

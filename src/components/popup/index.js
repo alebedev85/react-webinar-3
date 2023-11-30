@@ -22,7 +22,7 @@ function Popup({ list, isOpen, onClose, callback }) {
           />
           <div className='popup-resalt'>
             <div>Итого: </div>
-            <div>{list.reduce((sum, item) => { return sum + item.count * item.price }, 0)} ₽</div>
+            <div>{`${list.reduce((sum, item) => { return sum + item.count * item.price }, 0)} ₽`}</div>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import './style.css';
 function Item(props) {
 
   const callbacks = {
-    onAddItem: (e) => {
+    onButtonClick: (e) => {
       e.stopPropagation();
       props.callback(props.item);
     }
@@ -19,10 +19,10 @@ function Item(props) {
         {props.item.title}
       </div>
       <div className='Item-price'>
-        {props.item.price}₽
+        {`${props.item.price.toLocaleString()} ₽`}
       </div>
       <div className='Item-actions'>
-        <button onClick={callbacks.onAddItem}>
+        <button onClick={callbacks.onButtonClick}>
           {props.buttonText}
         </button>
       </div>

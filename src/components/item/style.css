@@ -25,6 +25,12 @@
   white-space: nowrap;
 }
 
+.Item-amount {
+  width: auto;
+  padding: 20px 10px 20px 62px;
+  white-space: nowrap;
+}
+
 .Item-actions {
   display: flex;
   justify-content: flex-end;

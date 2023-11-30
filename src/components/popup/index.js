@@ -21,8 +21,8 @@ function Popup({ list, isOpen, onClose, callback }) {
             buttonText='Удалить'
           />
           <div className='popup-resalt'>
-            <span>Итого: </span>
-            <span>{list.reduce((sum, item) => { return sum + item.count * item.price }, 0)} ₽</span>
+            <div>Итого: </div>
+            <div>{list.reduce((sum, item) => { return sum + item.count * item.price }, 0)} ₽</div>
           </div>
         </div>
       </div>

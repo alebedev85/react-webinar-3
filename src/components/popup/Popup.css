@@ -33,14 +33,14 @@
 
 .popup-resalt {
   padding-top: 20px;
-  padding-right: 120px;
+  padding-right: 105px;
   justify-content: flex-end;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   display: flex;
-  gap: 53px;
+  gap: 58px;
 }
 
 .popup-body{

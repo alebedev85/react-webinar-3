@@ -21,6 +21,9 @@ function Item(props) {
       <div className='Item-price'>
         {`${props.item.price.toLocaleString()} ₽`}
       </div>
+      {props.item.count ? <div className='Item-amount'>
+        {props.item.count} шт </div> :
+        <></>}
       <div className='Item-actions'>
         <button onClick={callbacks.onButtonClick}>
           {props.buttonText}
@@ -35,6 +38,7 @@ Item.propTypes = {
     code: PropTypes.number,
     title: PropTypes.string,
     price: PropTypes.number,
+    count: PropTypes.number,
   }).isRequired,
   callback: PropTypes.func,
 };

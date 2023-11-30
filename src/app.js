@@ -18,8 +18,8 @@ function App({ items, cart }) {
   const cartList = cart.getState().list;
 
   const callbacks = {
-    onDeleteItem: useCallback((code) => {
-      cart.deleteItem(code);
+    onDeleteItem: useCallback((item) => {
+      cart.deleteItem(item.code);
     }, [cart]),
 
     onAddItem: useCallback((item) => {
@@ -28,7 +28,6 @@ function App({ items, cart }) {
       } else {
         cart.addItem(item);
       }
-      console.log(cart.state.list);
     }, [cart])
   }
 
@@ -48,12 +47,16 @@ function App({ items, cart }) {
         openPopup={openPopup}
         disabled={cartList.length === 0}
       />
-      <List list={itemsList}
-        onAddItem={callbacks.onAddItem} />
+      <List
+        list={itemsList}
+        callback={callbacks.onAddItem}
+        buttonText='Добавить'
+      />
       <Popup
         list={cartList}
         isOpen={onPopup}
         onClose={closePopup}
+        callback={callbacks.onDeleteItem}
       />
     </PageLayout>
   );

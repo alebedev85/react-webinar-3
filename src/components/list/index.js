@@ -1,14 +1,18 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import Item from "../item";
 import './style.css';
 
-function List({list, onAddItem}) {
+function List({ list, callback, buttonText }) {
   return (
     <div className='List'>{
       list.map(item =>
         <div key={item.code} className='List-item'>
-          <Item item={item} onAddItem ={onAddItem}/>
+          <Item
+            item={item}
+            callback={callback}
+            buttonText={buttonText}
+          />
         </div>
       )}
     </div>
@@ -17,14 +21,17 @@ function List({list, onAddItem}) {
 
 List.propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({
-    code: PropTypes.number
+    code: PropTypes.number,
+    title: PropTypes.string,
+    price: PropTypes.number,
   })).isRequired,
-  onAddItem: PropTypes.func
+  callback: PropTypes.func,
+  buttonText: string
 };
 
 List.defaultProps = {
-  onAddItem: () => {
-  }
+  callback: () => {
+  },
 }
 
 export default React.memo(List);

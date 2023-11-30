@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import './style.css';
 
@@ -7,7 +7,7 @@ function Item(props) {
   const callbacks = {
     onAddItem: (e) => {
       e.stopPropagation();
-      props.onAddItem(props.item);
+      props.callback(props.item);
     }
   }
 
@@ -23,7 +23,7 @@ function Item(props) {
       </div>
       <div className='Item-actions'>
         <button onClick={callbacks.onAddItem}>
-          Добавить
+          {props.buttonText}
         </button>
       </div>
     </div>
@@ -34,17 +34,14 @@ Item.propTypes = {
   item: PropTypes.shape({
     code: PropTypes.number,
     title: PropTypes.string,
-    selected: PropTypes.bool,
+    price: PropTypes.number,
   }).isRequired,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func
+  callback: PropTypes.func,
 };
 
 Item.defaultProps = {
-  onDelete: () => {
-  },
-  onSelect: () => {
-  },
+  callback: () => {
+  }
 }
 
 export default React.memo(Item);

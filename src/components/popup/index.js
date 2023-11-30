@@ -1,20 +1,10 @@
+import React from 'react';
+import PropTypes from "prop-types";
 import './Popup.css'
 import List from "../list";
 import Head from "../head";
-import React from 'react';
 
-export default function Popup({ list, isOpen, onClose }) {
-
-  const callbacks = {
-    onAddItem: (item) => {
-      if (cart.findItem(item.title) !== -1) {
-        cart.onCounter(item.title)
-      } else {
-        cart.addItem(item);
-      }
-      console.log(cart.state.list);
-    }
-  }
+function Popup({ list, isOpen, onClose, callback }) {
 
   return (
     <div className={`popup ${isOpen ? ('popup_opened') : ''}`} >
@@ -25,8 +15,11 @@ export default function Popup({ list, isOpen, onClose }) {
           </button>
         </Head>
         <div className='popup-body'>
-          <List list={list}
-            onAddItem={callbacks.onAddItem} />
+          <List
+            list={list}
+            callback={callback}
+            buttonText='Удалить'
+          />
           <div className='popup-resalt'>
             <span>Итого: </span>
             <span>{list.reduce((sum, item) => { return sum + item.count * item.price }, 0)} ₽</span>
@@ -36,4 +29,20 @@ export default function Popup({ list, isOpen, onClose }) {
     </div>
   )
 }
+
+Popup.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.shape({
+    code: PropTypes.number,
+    title: PropTypes.string,
+    price: PropTypes.number,
+  })).isRequired,
+  callback: PropTypes.func,
+};
+
+Popup.defaultProps = {
+  callback: () => {
+  }
+}
+
+export default React.memo(Popup);
 

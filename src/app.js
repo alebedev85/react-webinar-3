@@ -44,7 +44,7 @@ function App({ items, cart }) {
       <Head title='Магазин' />
       <Controls
         list={cartList}
-        openPopup={openPopup}
+        onButtonClick={openPopup}
         disabled={cartList.length === 0}
       />
       <List
@@ -55,7 +55,7 @@ function App({ items, cart }) {
       <Popup
         list={cartList}
         isOpen={onPopup}
-        onClose={closePopup}
+        onButtonClick={closePopup}
         callback={callbacks.onDeleteItem}
       />
     </PageLayout>

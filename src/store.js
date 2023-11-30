@@ -70,7 +70,7 @@ class Store {
   };
 
   /**
-   * Изменение счетчика
+   * Изменение количества товара
    * @param title
    */
   onCounter(title) {

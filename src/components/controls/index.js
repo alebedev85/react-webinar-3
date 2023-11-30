@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes, { bool } from 'prop-types';
 import './style.css';
 
-function Controls({ openPopup, list, disabled }) {
+function Controls({ onButtonClick, list, disabled }) {
   return (
     <div className='Controls'>
       <div className='Controls-title'>В корзине:</div>
       {list.length > 0 ?
         <div className='Controls-span'>{list.length} товара / {list.reduce((sum, item) => {
-          return sum + item.count * item.price}, 0)} ₽</div> :
+          return sum + item.count * item.price}, 0).toLocaleString()} ₽</div> :
         <div className='Controls-span'>пусто</div>}
-      <button className='Controls-button' disabled={disabled} onClick={() => openPopup()}>Перейти</button>
+      <button className='Controls-button' disabled={disabled} onClick={() => onButtonClick()}>Перейти</button>
     </div>
   )
 }
@@ -21,12 +21,12 @@ Controls.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
   })).isRequired,
-  openPopup: PropTypes.func,
+  onButtonClick: PropTypes.func.isRequired,
   disabled: bool
 };
 
 Controls.defaultProps = {
-  openPopup: () => { }
+  onButtonClick: () => { }
 }
 
 export default React.memo(Controls);

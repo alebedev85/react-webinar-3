@@ -40,7 +40,7 @@ Item.propTypes = {
     price: PropTypes.number,
     count: PropTypes.number,
   }).isRequired,
-  callback: PropTypes.func,
+  callback: PropTypes.func.isRequired,
 };
 
 Item.defaultProps = {

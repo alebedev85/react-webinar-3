@@ -1,28 +1,28 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import './Popup.css'
+import './style.css';
 import List from "../list";
 import Head from "../head";
 
-function Popup({ list, isOpen, onClose, callback }) {
+function Popup({ list, isOpen, onButtonClick, callback }) {
 
   return (
-    <div className={`popup ${isOpen ? ('popup_opened') : ''}`} >
-      <div className='popup-container'>
+    <div className={`Popup ${isOpen ? ('Popup_opened') : ''}`} >
+      <div className='Popup-container'>
         <Head title='Карзина' >
-          <button onClick={onClose}>
+          <button onClick={onButtonClick}>
             Закрыть
           </button>
         </Head>
-        <div className='popup-body'>
+        <div className='Popup-body'>
           <List
             list={list}
             callback={callback}
             buttonText='Удалить'
           />
-          <div className='popup-resalt'>
+          <div className='Popup-resalt'>
             <div>Итого: </div>
-            <div>{`${list.reduce((sum, item) => { return sum + item.count * item.price }, 0)} ₽`}</div>
+            <div>{`${list.reduce((sum, item) => { return sum + item.count * item.price }, 0).toLocaleString()} ₽`}</div>
           </div>
         </div>
       </div>
@@ -35,8 +35,9 @@ Popup.propTypes = {
     code: PropTypes.number,
     title: PropTypes.string,
     price: PropTypes.number,
+    count: PropTypes.number,
   })).isRequired,
-  callback: PropTypes.func,
+  callback: PropTypes.func.isRequired,
 };
 
 Popup.defaultProps = {

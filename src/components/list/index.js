@@ -24,8 +24,9 @@ List.propTypes = {
     code: PropTypes.number,
     title: PropTypes.string,
     price: PropTypes.number,
+    count: PropTypes.number,
   })).isRequired,
-  callback: PropTypes.func,
+  callback: PropTypes.func.isRequired,
   buttonText: string
 };
 

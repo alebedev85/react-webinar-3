@@ -5,27 +5,28 @@ import './style.css';
 function Controls({ openPopup, list, disabled }) {
   return (
     <div className='Controls'>
-      <h2 className='Controls-title'>В корзине:
-        {list.length > 0 ?
-          <span className='Controls-span'>{list.length} товара / {list.reduce((sum, item) => {
-            return sum + item.count * item.price}, 0)} ₽</span> :
-            <span className='Controls-span'>пусто</span>}
-      </h2>
-      <button disabled={disabled} onClick={() => openPopup()}>Перейти</button>
+      <div className='Controls-title'>В корзине:</div>
+      {list.length > 0 ?
+        <div className='Controls-span'>{list.length} товара / {list.reduce((sum, item) => {
+          return sum + item.count * item.price}, 0)} ₽</div> :
+        <div className='Controls-span'>пусто</div>}
+      <button className='Controls-button' disabled={disabled} onClick={() => openPopup()}>Перейти</button>
     </div>
   )
 }
 
 Controls.propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({
-    code: PropTypes.number
+    code: PropTypes.number,
+    title: PropTypes.string,
+    price: PropTypes.number,
   })).isRequired,
-  onAdd: PropTypes.func,
+  openPopup: PropTypes.func,
   disabled: bool
 };
 
 Controls.defaultProps = {
-  onAdd: () => { }
+  openPopup: () => { }
 }
 
 export default React.memo(Controls);

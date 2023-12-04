@@ -16,13 +16,13 @@ function Cart({cart, closePopup, callback}) {
           Закрыть
         </button>
       </Head>
-      <div className='Popup-body'>
+      <div className='Cart-body'>
         <List
           list={list}
           callback={callback}
           buttonText='Удалить'
         />
-        <div className='Popup-resalt'>
+        <div className='Cart-resalt'>
           <div>Итого: </div>
           <div>{`${totalPrice.toLocaleString()} ₽`}</div>
         </div>

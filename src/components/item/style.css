@@ -28,7 +28,8 @@
 
 .Item-amount {
   width: auto;
-  padding: 20px 10px 20px 62px;
+  padding: 20px 14px 20px 49px;
+  font-size: 18px;
   white-space: nowrap;
 }
 

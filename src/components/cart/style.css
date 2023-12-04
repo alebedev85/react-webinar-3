@@ -1,27 +1,21 @@
-.Popup-container {
-  overflow: hidden;
-  width: 960px;
-  padding-bottom: 89px;
-  border-radius: 10px;
-  margin: 0 auto;
-  background: #fff;
-  box-sizing: border-box;
-  box-shadow: 0 0 15px 5px #0000003b;
+button {
+  width: 76px;
+  height: 21px;
 }
 
-.Popup-resalt {
-  padding-top: 20px;
-  padding-right: 105px;
+.Cart-resalt {
+  padding-top: 23px;
+  padding-right: 122px;
   justify-content: flex-end;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   display: flex;
-  gap: 58px;
+  gap: 46px;
 }
 
-.Popup-body{
+.Cart-body {
   display: block;
-  padding-top: 51px;
+  padding-top: 71px;
 }

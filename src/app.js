@@ -4,31 +4,27 @@ import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import Popup from "./components/popup";
+import Cart from "./components/cart";
 
 /**
  * Приложение
  * @param items {items} Хранилище состояния приложения
  * @returns {React.ReactElement}
  */
-function App({ items, cart }) {
+function App({ store }) {
 
   const [onPopup, setOnPopup] = useState(false);
 
-  const itemsList = items.getState().list;
-  const cartList = cart.getState().list;
+  const { list, cart } = store.getState();
 
   const callbacks = {
     onDeleteItem: useCallback((item) => {
-      cart.deleteItem(item.code);
-    }, [cart]),
+      store.deleteItem(item.code);
+    }, [store]),
 
     onAddItem: useCallback((item) => {
-      if (cart.findItem(item.title) !== -1) {
-        cart.onCounter(item.title)
-      } else {
-        cart.addItem(item);
-      }
-    }, [cart])
+      store.addItem(item);
+    }, [store])
   }
 
   function openPopup() {
@@ -43,34 +39,22 @@ function App({ items, cart }) {
     <PageLayout>
       <Head title='Магазин' />
       <Controls
-        list={cartList}
+        cart={cart}
         onButtonClick={openPopup}
-        disabled={cartList.length === 0}
+        disabled={true}
       />
       <List
-        list={itemsList}
+        list={list}
         callback={callbacks.onAddItem}
         buttonText='Добавить'
       />
       <Popup
         isOpen={onPopup}
       >
-        <Head title='Карзина' >
-          <button onClick={closePopup}>
-            Закрыть
-          </button>
-        </Head>
-        <div className='Popup-body'>
-          <List
-            list={cartList}
-            callback={callbacks.onDeleteItem}
-            buttonText='Удалить'
-          />
-          <div className='Popup-resalt'>
-            <div>Итого: </div>
-            <div>{`${cartList.reduce((sum, item) => { return sum + item.count * item.price }, 0).toLocaleString()} ₽`}</div>
-          </div>
-        </div>
+        <Cart
+          cart={cart}
+          closePopup={closePopup}
+          callback={callbacks.onDeleteItem} />
       </Popup>
     </PageLayout>
   );

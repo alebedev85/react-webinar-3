@@ -18,31 +18,3 @@
   visibility: visible;
   opacity: 1;
 }
-
-.Popup-container {
-  overflow: hidden;
-  width: 960px;
-  padding-bottom: 89px;
-  border-radius: 10px;
-  margin: 0 auto;
-  background: #fff;
-  box-sizing: border-box;
-  box-shadow: 0 0 15px 5px #0000003b;
-}
-
-.Popup-resalt {
-  padding-top: 20px;
-  padding-right: 105px;
-  justify-content: flex-end;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  display: flex;
-  gap: 58px;
-}
-
-.Popup-body{
-  display: block;
-  padding-top: 51px;
-}

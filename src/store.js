@@ -7,6 +7,7 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
+    this.sum = 0;
   }
 
   /**
@@ -42,51 +43,53 @@ class Store {
 
   /**
    * Добавление новой записи
+   * * @param item
    */
   addItem(item) {
-    this.setState({
-      ...this.state,
-      list: [...this.state.list, { code: generateCode(), title: item.title, price: item.price, count: 1 }]
-    })
+    const { totalPrice, totalCount, list } = this.state.cart;
+    const { code, price } = item;
+    const hasInCart = list.hasOwnProperty(code);
+
+    const newCart = {
+      totalPrice: totalPrice + price,
+      totalCount: hasInCart ? totalCount: totalCount + 1,
+      list: {
+        ...list,
+        [code]: {
+          count: hasInCart ? list[code].count + 1 : 1,
+          totalPrice: hasInCart ? list[code].totalPrice + price : price,
+          item
+        }
+      }
+    };
+
+    this.setState({ ...this.state, cart: newCart });
   };
 
-  /**
-   * Поиск по заголовку
-   */
-  findItem(title) {
-    return this.state.list.findIndex(item => item.title === title)
-  };
 
   /**
    * Удаление записи по коду
-   * @param code
+   * @param item
    */
-  deleteItem(code) {
-    this.setState({
-      ...this.state,
-      // Новый список, в котором не будет удаляемой записи
-      list: this.state.list.filter(item => item.code !== code)
-    })
-  };
+  deleteItem(item) {
+    const { code } = item;
+    const { cart } = this.state;
+    const { totalCount, totalPrice, list } = cart;
 
-  /**
-   * Изменение количества товара
-   * @param title
-   */
-  onCounter(title) {
-    this.setState({
-      ...this.state,
-      list: this.state.list.map(item => {
-        if (item.title === title) {
-          return {
-            ...item,
-            count: item.count + 1,
-          };
-        }
-        return item;
-      })
-    })
-  }
+    const newTotalPrice = totalPrice - list[code].totalPrice;
+    const newTotalCount = totalCount - list[code].count;
+
+    delete list[code];
+
+    const newCart = {
+      ...cart,
+      totalCount: newTotalCount,
+      totalPrice: newTotalPrice,
+      list: { ...list }
+    };
+
+    this.setState({ ...this.state, cart: newCart });
+  };
 }
 
 export default Store;

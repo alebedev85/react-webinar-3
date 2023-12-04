@@ -4,7 +4,7 @@ import {generateCode} from './utils.js';
 import App from './app.js';
 import Store from './store.js';
 
-const items = new Store({
+const store = new Store({
   list: [
     {code: generateCode(), title: 'Название товара', price: 100.0},
     {code: generateCode(), title: 'Книга про React', price: 770},
@@ -13,18 +13,19 @@ const items = new Store({
     {code: generateCode(), title: 'Телефон iPhone XIXV', price: 120000},
     {code: generateCode(), title: 'Карандаши цветные', price: 111},
     {code: generateCode(), title: 'Товар сюрприз', price: 0},
-  ]
-});
-
-const cart = new Store({
-  list: []
+  ],
+  cart: {
+    totalPrice: 0,
+    totalCount: 0,
+    list: {}
+  }
 });
 
 const root = createRoot(document.getElementById('root'));
 
-cart.subscribe(() => {
-  root.render(<App items={items} cart={cart}/>);
+store.subscribe(() => {
+  root.render(<App store={store}/>);
 });
 
 // Первый рендер приложения
-root.render(<App items={items} cart={cart}/>);
+root.render(<App store={store}/>);

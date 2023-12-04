@@ -3,6 +3,7 @@
   justify-content: flex-end;
   padding: 20px;
   gap: 12px;
+  font-size: 18px;
 }
 
 .Controls-title {
@@ -16,7 +17,7 @@
 
 .Controls-span {
   font-weight: 700;
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
 .Controls-button{

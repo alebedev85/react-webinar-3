@@ -19,7 +19,7 @@ function App({ store }) {
 
   const callbacks = {
     onDeleteItem: useCallback((item) => {
-      store.deleteItem(item.code);
+      store.deleteItem(item);
     }, [store]),
 
     onAddItem: useCallback((item) => {

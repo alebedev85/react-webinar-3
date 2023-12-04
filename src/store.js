@@ -76,7 +76,7 @@ class Store {
     const { cart } = this.state;
     const { totalCount, totalPrice, list } = cart;
 
-    const newTotalPrice = totalPrice - list[code].totalPrice;
+    const newTotalPrice = totalPrice - item.price;
     const newTotalCount = totalCount - list[code].count;
 
     delete list[code];

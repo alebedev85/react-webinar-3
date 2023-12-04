@@ -53,11 +53,25 @@ function App({ items, cart }) {
         buttonText='Добавить'
       />
       <Popup
-        list={cartList}
         isOpen={onPopup}
-        onButtonClick={closePopup}
-        callback={callbacks.onDeleteItem}
-      />
+      >
+        <Head title='Карзина' >
+          <button onClick={closePopup}>
+            Закрыть
+          </button>
+        </Head>
+        <div className='Popup-body'>
+          <List
+            list={cartList}
+            callback={callbacks.onDeleteItem}
+            buttonText='Удалить'
+          />
+          <div className='Popup-resalt'>
+            <div>Итого: </div>
+            <div>{`${cartList.reduce((sum, item) => { return sum + item.count * item.price }, 0).toLocaleString()} ₽`}</div>
+          </div>
+        </div>
+      </Popup>
     </PageLayout>
   );
 }
